@@ -250,6 +250,18 @@ local resolutions = {
     ),
 }
 
+local toggle_wide = function()
+    local active_width, active_height = waywall.active_res()
+
+    if active_width ~= 0 or active_height ~= 0 then
+        waywall.set_resolution(0, 0)
+        waywall.set_sensitivity(0)
+        return
+    end
+
+    resolutions.wide()
+end
+
 
 -- ==== CONFIG ====
 
@@ -298,7 +310,7 @@ config.actions = {
 
     [thin] = resolutions.thin,
     [tall] = resolutions.tall,
-    [wide] = resolutions.wide,
+    [wide] = toggle_wide,
     [oneshot] = resolutions.oneshot,
 
 
